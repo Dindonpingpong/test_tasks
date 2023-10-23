@@ -27,6 +27,11 @@ export function NavComp() {
             href: '/fourth',
             title: 'Fourth task',
         },
+        {
+            id: 'fifth_task',
+            href: '/fifth',
+            title: 'Fifth task',
+        },
     ]
 
     return (

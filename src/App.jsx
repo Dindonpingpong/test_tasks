@@ -5,6 +5,7 @@ import { FirstTaskPage } from './pages/FirstTaskPage/FirstTaskPage';
 import { SecondTaskPage } from './pages/SecondTaskPage/SecondTaskPage';
 import { ThirdTaskPage } from './pages/ThirdTaskPage/ThirdTaskPage';
 import { FourthTaskPage } from './pages/FourthTaskPage/FourthTaskPage';
+import { FifthTaskPage } from './pages/FifthTaskPage/FifthTaskPage';
 
 export default function App() {
     return (
@@ -14,6 +15,7 @@ export default function App() {
                 <Route path='/second' element={<SecondTaskPage />} />
                 <Route path='/third' element={<ThirdTaskPage />} />
                 <Route path='/fourth' element={<FourthTaskPage />} />
+                <Route path='/fifth' element={<FifthTaskPage />} />
             </Routes>
         </>
     )
