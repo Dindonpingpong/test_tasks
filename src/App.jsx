@@ -1,19 +1,22 @@
 import React from 'react'
 
 import { Routes, Route } from 'react-router-dom';
-import { FirstTaskPage } from './pages/FirstTaskPage/FirstTaskPage';
-import { SecondTaskPage } from './pages/SecondTaskPage/SecondTaskPage';
-import { ThirdTaskPage } from './pages/ThirdTaskPage/ThirdTaskPage';
-import { FourthTaskPage } from './pages/FourthTaskPage/FourthTaskPage';
+import { FirstTaskPage, SecondTaskPage, ThirdTaskPage } from './pages/TechTasks';
+import { ScreeningStagePage } from './pages/ScreeningStagePage/ScreeningStagePage';
+import { TechStagePage } from './pages/TechStagePage/TechStagePage';
+import { ScreeningFirstTaskPage, ScreeningSecondTaskPage } from './pages/ScreeningTasks';
 
 export default function App() {
     return (
         <>
             <Routes>
-                <Route path='/' element={<FirstTaskPage />} />
-                <Route path='/second' element={<SecondTaskPage />} />
-                <Route path='/third' element={<ThirdTaskPage />} />
-                <Route path='/fourth' element={<FourthTaskPage />} />
+                <Route path='/' element={<ScreeningStagePage />} />
+                <Route path='/tech' element={<TechStagePage />} />
+                <Route path='/screening/first' element={<ScreeningFirstTaskPage />} />
+                <Route path='/screening/second' element={<ScreeningSecondTaskPage />} />
+                <Route path='/tech/first' element={<FirstTaskPage />} />
+                <Route path='/tech/second' element={<SecondTaskPage />} />
+                <Route path='/tech/third' element={<ThirdTaskPage />} />
             </Routes>
         </>
     )

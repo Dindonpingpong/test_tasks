@@ -1,11 +1,12 @@
 import { Badge, Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
-import { NavComp } from "../../components/Navbar";
+import { NavComp } from "../../../components/Navbar";
 import { useState } from "react";
 import axios from "axios";
+import { stages_links, tech_links } from "../../../constants/links";
 
 const REQUEST_URL = 'https://catfact.ninja/fact';
 
-export function SecondTaskPage() {
+export function FirstTaskPage() {
     const [validated, setValidated] = useState(false);
     const [isLoading, setLoading] = useState(false);
     const [catFact, setFact] = useState({ fact: '', length: 0 });
@@ -22,9 +23,9 @@ export function SecondTaskPage() {
             ...catFact,
             ...data
         }))
-
         setLoading(false);
     }
+
 
     const handleSubmit = async (event) => {
         await event.preventDefault();
@@ -35,7 +36,8 @@ export function SecondTaskPage() {
 
     return (
         <>
-            <NavComp />
+            <NavComp links={stages_links}/>
+            <NavComp links={tech_links}/>
             <Container className='mt-4'>
                 <Row className="g-4">
                     {
@@ -65,7 +67,8 @@ export function SecondTaskPage() {
                     }
                 </Row>
                 {
-                    <Row className="mt-2 g-4" style={{ visibility: "hidden" }}>
+                    !isLoading && catFact.length !== 0 &&
+                    <Row className="mt-2 g-4">
                         <p style={{ color: "white" }}>{catFact.fact} <Badge >{catFact.length}</Badge></p>
                     </Row>
                 }

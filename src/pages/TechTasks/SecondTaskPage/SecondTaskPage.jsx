@@ -1,20 +1,19 @@
 import { Badge, Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
-import { NavComp } from "../../components/Navbar";
+import { NavComp } from "../../../components/Navbar";
 import { useState } from "react";
 import axios from "axios";
+import { stages_links, tech_links } from "../../../constants/links";
 
-const REQUEST_URL = 'https://catfact.ninja/factfdas';
+const REQUEST_URL = 'https://catfact.ninja/fact';
 
-export function ThirdTaskPage() {
+export function SecondTaskPage() {
     const [validated, setValidated] = useState(false);
     const [isLoading, setLoading] = useState(false);
     const [catFact, setFact] = useState({ fact: '', length: 0 });
 
     const getCatFact = async () => {
-       try {
-        const response = await axios(REQUEST_URL);
+        const { data } = await axios(REQUEST_URL);
 
-        setLoading(false);
         if (!data || data.length === 0) {
             setLoading(false);
             return {};
@@ -22,15 +21,11 @@ export function ThirdTaskPage() {
 
         setFact(catFact => ({
             ...catFact,
-            ...response.data
+            ...data
         }))
-        
-        setLoading(false);
-       } catch (error) {
-         setLoading(false);
-       }
-    }
 
+        setLoading(false);
+    }
 
     const handleSubmit = async (event) => {
         await event.preventDefault();
@@ -41,7 +36,8 @@ export function ThirdTaskPage() {
 
     return (
         <>
-            <NavComp />
+            <NavComp links={stages_links}/>
+            <NavComp links={tech_links}/>
             <Container className='mt-4'>
                 <Row className="g-4">
                     {
@@ -71,7 +67,7 @@ export function ThirdTaskPage() {
                     }
                 </Row>
                 {
-                    <Row className="mt-2 g-4" style={{visibility: "hidden"}}>
+                    <Row className="mt-2 g-4" style={{ visibility: "hidden" }}>
                         <p style={{ color: "white" }}>{catFact.fact} <Badge >{catFact.length}</Badge></p>
                     </Row>
                 }

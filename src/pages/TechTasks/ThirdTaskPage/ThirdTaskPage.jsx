@@ -1,18 +1,21 @@
 import { Badge, Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
-import { NavComp } from "../../components/Navbar";
+import { NavComp } from "../../../components/Navbar";
 import { useState } from "react";
 import axios from "axios";
+import { stages_links, tech_links } from "../../../constants/links";
 
-const REQUEST_URL = 'https://catfact.ninja/fact';
+const REQUEST_URL = 'https://catfact.ninja/factfdas';
 
-export function FirstTaskPage() {
+export function ThirdTaskPage() {
     const [validated, setValidated] = useState(false);
     const [isLoading, setLoading] = useState(false);
     const [catFact, setFact] = useState({ fact: '', length: 0 });
 
     const getCatFact = async () => {
-        const { data } = await axios(REQUEST_URL);
+       try {
+        const response = await axios(REQUEST_URL);
 
+        setLoading(false);
         if (!data || data.length === 0) {
             setLoading(false);
             return {};
@@ -20,11 +23,13 @@ export function FirstTaskPage() {
 
         setFact(catFact => ({
             ...catFact,
-            ...data
+            ...response.data
         }))
+        
         setLoading(false);
-
-        console.log(data);
+       } catch (error) {
+         setLoading(false);
+       }
     }
 
 
@@ -37,7 +42,8 @@ export function FirstTaskPage() {
 
     return (
         <>
-            <NavComp />
+            <NavComp links={stages_links}/>
+            <NavComp links={tech_links}/>
             <Container className='mt-4'>
                 <Row className="g-4">
                     {
@@ -67,8 +73,7 @@ export function FirstTaskPage() {
                     }
                 </Row>
                 {
-                    !isLoading && catFact.length !== 0 &&
-                    <Row className="mt-2 g-4">
+                    <Row className="mt-2 g-4" style={{visibility: "hidden"}}>
                         <p style={{ color: "white" }}>{catFact.fact} <Badge >{catFact.length}</Badge></p>
                     </Row>
                 }

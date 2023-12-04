@@ -2,32 +2,10 @@ import { React } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-export function NavComp() {
+
+export function NavComp(props) {
     const params = useLocation();
     const currentPath = params.pathname;
-
-    const nav_links = [
-        {
-            id: 'first_task',
-            href: '/',
-            title: 'First task',
-        },
-        {
-            id: 'second_task',
-            href: '/second',
-            title: 'Second task',
-        },
-        {
-            id: 'third_task',
-            href: '/third',
-            title: 'Third task',
-        },
-        {
-            id: 'fourth_task',
-            href: '/fourth',
-            title: 'Fourth task',
-        },
-    ]
 
     return (
         <Navbar
@@ -42,7 +20,7 @@ export function NavComp() {
                         style={{ maxHeight: "100px" }}
                         navbarScroll
                     >
-                        {nav_links.map((item) => (
+                        {props.links.map((item) => (
                             <Link
                                 key={item.id}
                                 to={item.href}
